@@ -1,0 +1,68 @@
+<div id="tA">
+<style>
+#tA{--bg:#f1e8d8;--ink:#2e2a24;--olive:#5b6b3a;--rust:#a4512f;--line:#d8cbb2;max-width:680px;margin:0 auto;padding:28px 20px 40px;background:var(--bg);color:var(--ink);font-family:Georgia,"Times New Roman",serif;line-height:1.55;box-sizing:border-box}
+#tA *{box-sizing:border-box}
+#tA h2{font-size:28px;line-height:1.2;margin:0 0 14px;font-weight:700}
+#tA p{margin:0 0 14px;font-size:18px}
+#tA .sm{font-size:15px;color:#6b6254}
+#tA button{font-family:inherit;cursor:pointer}
+#tA .go{background:var(--olive);color:#fff;border:0;border-radius:6px;padding:14px 26px;font-size:17px}
+#tA .go:disabled{opacity:.4;cursor:default}
+#tA .go:focus-visible,#tA .sc button:focus-visible{outline:3px solid var(--rust);outline-offset:2px}
+#tA .bar{height:6px;background:var(--line);border-radius:3px;margin-bottom:22px}
+#tA .bar i{display:block;height:100%;background:var(--olive);border-radius:3px;transition:width .3s}
+#tA .q{margin:0 0 22px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+#tA .q p{font-size:17px;margin-bottom:10px}
+#tA .sc{display:flex;gap:8px}
+#tA .sc button{flex:1;padding:11px 0;font-size:17px;background:#fff8ea;border:1px solid var(--line);border-radius:6px;color:var(--ink)}
+#tA .sc button.on{background:var(--rust);border-color:var(--rust);color:#fff}
+#tA .ends{display:flex;justify-content:space-between;font-size:13px;color:#6b6254;margin-top:5px}
+#tA .row{margin:0 0 14px}
+#tA .row b{display:flex;justify-content:space-between;font-weight:400;font-size:16px;margin-bottom:4px}
+#tA .row span.t{display:block;height:10px;background:var(--line);border-radius:5px;overflow:hidden}
+#tA .row span.t i{display:block;height:100%;border-radius:5px}
+#tA .avg{font-size:44px;font-weight:700;color:var(--rust);margin:0 0 4px}
+#tA .box{background:#fff8ea;border-left:4px solid var(--rust);padding:12px 16px;margin:18px 0;font-size:17px}
+#tA .box.o{border-color:var(--olive)}
+#tA .back{background:none;border:0;color:#6b6254;font-size:15px;text-decoration:underline;margin-left:14px}
+@media(max-width:480px){#tA h2{font-size:24px}#tA .sc button{padding:12px 0}}
+</style>
+<div id="tAm"></div>
+<script>
+(function(){
+var S=[
+["Деньги и факты",["Я знаю свой доход и расходы за последний месяц в цифрах","У меня есть финансовая подушка","Меня устраивает моё текущее жильё и уровень дохода"]],
+["Отношение к себе",["Я считаю, что способна зарабатывать значительно больше","Я довожу важные дела до конца","Я спокойно реагирую на критику и неудачи, не коплю самоедство"]],
+["Навыки и ниша",["У меня есть навык, за который люди готовы платить","Я могу назвать, кому именно и чем я полезна","Моя ниша позволяет выйти на тот доход, которого я хочу"]],
+["Семья и корни",["В моей семье к деньгам относились спокойно","В семье были люди, которые зарабатывали своим делом","Чужое богатство в семье вызывало уважение, а не осуждение"]],
+["Опыт побед",["Я достигала больших целей","Я доходила до сильного уровня в каком-то деле","У меня был опыт выступлений перед людьми"]],
+["Энергия",["Утром я просыпаюсь с силами","К вечеру у меня остаются силы на важное","Я умею восстанавливаться, когда устала"]],
+["Мотивация",["Мне понятна моя цель на ближайший год","Я понимаю, зачем мне нужен рост дохода","Мне хочется действовать, а не заставлять себя"]],
+["Окружение",["Близкие поддерживают мои шаги к росту","Рядом есть люди, которые зарабатывают больше меня","Мне есть с кем обсуждать свои планы"]],
+["Денежные привычки",["Я веду учёт доходов и расходов","Я регулярно откладываю часть дохода","Я называю свою цену без оправданий"]],
+["Страхи",["Я делаю важные шаги, даже когда мне страшно","Я не откладываю главное дело из-за боязни оценки","Мне спокойно думать о том, что у меня может получиться"]]
+];
+var A={},i=0,el=document.getElementById("tAm");
+function key(s,q){return s+"_"+q}
+function start(){el.innerHTML='<h2>Аудит вашей точки А</h2><p>Любой рост начинается с факта, а не с мнения о себе. Ниже десять сфер, которые влияют на ваш доход, по три утверждения в каждой.</p><p>Отвечайте так, как есть на самом деле, а не как «правильно» или как хотелось бы. Если ответ неприятный, это нормально: он вам сейчас нужнее всего.</p><p class="sm">Это займёт около 5 минут. Оценка от 1 («совсем не про меня») до 5 («точно про меня»).</p><button class="go" id="tAs">Начать</button>';
+document.getElementById("tAs").onclick=function(){i=0;A={};show()}}
+function done(s){for(var q=0;q<3;q++)if(!A[key(s,q)])return false;return true}
+function show(){var s=S[i],h='<div class="bar"><i style="width:'+(i/S.length*100)+'%"></i></div><p class="sm">Сфера '+(i+1)+' из '+S.length+'</p><h2>'+s[0]+'</h2>';
+s[1].forEach(function(t,q){h+='<div class="q"><p>'+t+'</p><div class="sc">';for(var v=1;v<=5;v++)h+='<button data-q="'+q+'" data-v="'+v+'" class="'+(A[key(i,q)]==v?'on':'')+'" aria-label="'+v+'">'+v+'</button>';h+='</div><div class="ends"><span>совсем не про меня</span><span>точно про меня</span></div></div>'});
+h+='<button class="go" id="tAn" '+(done(i)?'':'disabled')+'>'+(i==S.length-1?'Показать результат':'Дальше')+'</button>'+(i>0?'<button class="back" id="tAb">Назад</button>':'');
+el.innerHTML=h;
+Array.prototype.forEach.call(el.querySelectorAll(".sc button"),function(b){b.onclick=function(){A[key(i,b.dataset.q)]=+b.dataset.v;show();window.scrollTo&&el.scrollIntoView({block:"start"})}});
+document.getElementById("tAn").onclick=function(){if(i==S.length-1)res();else{i++;show();el.scrollIntoView()}};
+var bk=document.getElementById("tAb");if(bk)bk.onclick=function(){i--;show()}}
+function res(){var r=S.map(function(s,n){var t=0;for(var q=0;q<3;q++)t+=A[key(n,q)];return{n:s[0],v:t/3}});
+var avg=r.reduce(function(a,b){return a+b.v},0)/r.length,srt=r.slice().sort(function(a,b){return a.v-b.v});
+function col(v){return v<2.5?"#a4512f":v<3.8?"#c9a24a":"#5b6b3a"}
+var h='<h2>Ваш результат</h2><p class="sm">Средний балл по десяти сферам</p><p class="avg">'+avg.toFixed(1)+' из 5</p>';
+r.forEach(function(x){h+='<div class="row"><b><span>'+x.n+'</span><span>'+x.v.toFixed(1)+'</span></b><span class="t"><i style="width:'+x.v/5*100+'%;background:'+col(x.v)+'"></i></span></div>'});
+h+='<div class="box"><b>Рабочая зона, с неё стоит начинать:</b><br>'+srt.slice(0,3).map(function(x){return x.n}).join(", ")+'</div>';
+h+='<div class="box o"><b>Ваша опора:</b><br>'+srt.slice(-3).reverse().map(function(x){return x.n}).join(", ")+'</div>';
+h+='<p>Это ваш диагноз на сегодня. Он не оценка вас как человека, а факт, от которого можно идти дальше: понять, какие сферы усилить и где спрятан ключик к вашему росту.</p><p class="sm">Пришлите результат вашему наставнику, и мы разберём его вместе.</p><button class="go" id="tAr">Пройти заново</button>';
+el.innerHTML=h;document.getElementById("tAr").onclick=start;el.scrollIntoView()}
+start()})();
+</script>
+</div>
